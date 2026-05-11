@@ -1,6 +1,6 @@
 <?php
 
-$con=mysqli_connect("localhost","root","","sacencības");  
+$con=mysqli_connect("localhost","root","","snake");  
 if(!$con) 
 { 
     die(" Connection Error ");
