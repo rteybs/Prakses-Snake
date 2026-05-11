@@ -9,6 +9,7 @@
     <div class="NavBox">
         <h3>Snake website</h3>
         <a href="snake.php">play good gaem</a>
+        <a href="Register.php">sign in</a>
     </div>
     <div class="SnakeBox"></div>
     <div class="Userbox"></div>
