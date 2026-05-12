@@ -14,7 +14,9 @@ session_start();
 <div class="container">
     <div class="NavBox">
         <h3>Snake website</h3>
+        <?php if(isset($_SESSION['Username'])): ?>
         <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
+        <?php endif; ?>
         <a href="Register.php">sign in</a>
         <a href="Login.php">Log in</a>
         <a href="Logout.php">Log out</a>
