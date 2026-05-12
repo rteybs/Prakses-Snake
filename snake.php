@@ -1,4 +1,9 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['User_ID']);
+$userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +25,9 @@
     </div>
 
     <script>
+    var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    var userId = <?php echo json_encode($userId); ?>;
+
     (function() {
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -135,6 +143,17 @@
             const finalScore = score;
             const finalDuration = Math.floor((Date.now() - startTime) / 1000);
 
+            if (isLoggedIn) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "auth/save_score.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log("Score saved:", xhr.responseText);
+                    }
+                };
+                xhr.send("Points=" + finalScore + "&Duration_sec=" + finalDuration);
+            }
         }
 
         // Keyboard arrow controls
@@ -161,7 +180,6 @@
 
         restartBtn.addEventListener('click', initGame);
 
-        // Start the first game
         initGame();
     })();
     </script>
