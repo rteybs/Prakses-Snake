@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +14,10 @@
 <div class="container">
     <div class="NavBox">
         <h3>Snake website</h3>
+        <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
         <a href="Register.php">sign in</a>
         <a href="Login.php">Log in</a>
+        <a href="Logout.php">Log out</a>
     </div>
     <div class="SnakeBox">
         <a href="snake.php">play good gaem</a>
