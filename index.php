@@ -11,6 +11,7 @@
     <div class="NavBox">
         <h3>Snake website</h3>
         <a href="Register.php">sign in</a>
+        <a href="Login.php">Log in</a>
     </div>
     <div class="SnakeBox">
         <a href="snake.php">play good gaem</a>
