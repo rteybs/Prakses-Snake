@@ -10,13 +10,13 @@
 <body> 
     <div class="auth-container">   
         <div class="card-title"> 
-            <h3> Reģistrēšanās </h3> 
+            <h3> Sign in </h3> 
         </div>  
 
         <form action="auth/insert.php" method="post" enctype="multipart/form-data"> 
-            <input type="text" placeholder="username" name="vusername">
-            <input type="email" placeholder="email" name="email"> 
-            <input type="password" placeholder="password" name="password">
+            <input type="text" placeholder="username" name="Username">
+            <input type="email" placeholder="email" name="Email"> 
+            <input type="password" placeholder="password" name="Password">
                      
             <button class="btn btn-primary" name="submit">Submit</button> 
         </form>  
