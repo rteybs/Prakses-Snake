@@ -20,7 +20,7 @@ session_start();
         <a href="Logout.php">Log out</a>
     </div>
     <div class="SnakeBox">
-        <a href="snake.php">play good gaem</a>
+        <a href="snake.php">play snake game</a>
     </div>
     <div class="UserBox"></div>
 </div>
