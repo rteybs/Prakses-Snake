@@ -16,12 +16,15 @@ session_start();
     <h3>Snake website</h3>
     <div class="button-group">
         <?php if(isset($_SESSION['Username'])): ?>
-            <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
-            <a href="MyResults.php">Mani rezultāti</a>
-            <a href="Logout.php">Log out</a>
-        <?php endif; ?>
-        <a href="Register.php">sign in</a>
-        <a href="Login.php">Log in</a>
+                <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
+                <a href="index.php">Sākumlapa</a>
+                <a href="MyResults.php">Mani rezultāti</a>
+                <a href="Logout.php">Log out</a>        
+            <?php else: ?>
+                <a href="index.php">Sākumlapa</a>
+                <a href="Register.php">sign in</a>
+                <a href="Login.php">Log in</a>
+            <?php endif; ?>
     </div>
 </div>
     <div class="SnakeBox">
