@@ -13,14 +13,17 @@ session_start();
 <body>
 <div class="container">
     <div class="NavBox">
-        <h3>Snake website</h3>
+    <h3>Snake website</h3>
+    <div class="button-group">
         <?php if(isset($_SESSION['Username'])): ?>
-        <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
+            <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
+            <a href="MyResults.php">Mani rezultāti</a>
+            <a href="Logout.php">Log out</a>
         <?php endif; ?>
         <a href="Register.php">sign in</a>
         <a href="Login.php">Log in</a>
-        <a href="Logout.php">Log out</a>
     </div>
+</div>
     <div class="SnakeBox">
         <a href="snake.php">play snake game</a>
     </div>

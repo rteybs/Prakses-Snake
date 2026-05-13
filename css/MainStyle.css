@@ -90,6 +90,19 @@ html, body {
     grid-row: span 18;
 }
 
+table {
+    width: 100%;
+    border: 2px solid grey;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 5px 0;
+}
+
+td, th {
+    border: 2px solid grey;
+    padding: 5px 10px;
+}
+
 
 
 
