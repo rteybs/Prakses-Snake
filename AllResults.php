@@ -2,11 +2,11 @@
 session_start();
 require_once __DIR__ . '/includes/connection.php';
 
-$User_ID = $_SESSION['User_ID'];
-
-$query = "SELECT Points, Duration_sec, Played_at FROM records WHERE User_ID = ? ORDER BY Played_at DESC";
+$query = "SELECT records.Points, records.Duration_sec, records.Played_at, user.Username 
+          FROM records 
+          JOIN user ON records.User_ID = user.User_ID
+          ORDER BY records.Played_at DESC";
 $stmt = mysqli_prepare($con, $query);
-mysqli_stmt_bind_param($stmt, "i", $User_ID);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
@@ -19,15 +19,16 @@ mysqli_close($con);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mani rezultāti</title>
+    <title>Visi rezultāti</title>
     <link rel="stylesheet" href="css/MainStyle.css">
 </head>
 <body>
 <div class="container">
     <div class="NavBox">
-        <h1>Mani rezultāti</h1>
+        <h1>Visi lietotāju rezultāti</h1>
         <div class="button-group">
             <a href="index.php">Sākumlapa</a>
+            <a href="MyResults.php">Mani rezultāti</a>
             <a href="snake.php">Spēlēt vēlreiz</a>
         </div>
     </div>
@@ -37,14 +38,16 @@ mysqli_close($con);
             <table>
                 <thead>
                     <tr>
+                        <th>User</th>
                         <th>Points</th>
-                        <th>seconds played</th>
+                        <th>sekundēs</th>
                         <th>Timestamp</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($records as $rec): ?>
                         <tr>
+                            <td><?php echo htmlspecialchars($rec['Username']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Duration_sec']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Played_at']); ?></td>
@@ -53,7 +56,7 @@ mysqli_close($con);
                 </tbody>
             </table>
         <?php else: ?>
-            <p>Jums vēl nav neviena rezultāta. <a href="snake.php">Spēlēt tagad</a></p>
+            <p>Vēl nav neviena rezultāta. <a href="snake.php">Spēlēt tagad</a></p>
         <?php endif; ?>
     </div>
 </div>
