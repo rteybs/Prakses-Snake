@@ -27,8 +27,11 @@ $result = mysqli_query($con, $query);
                     <a href="index.php">Sākumlapa</a>
                     <a href="MyResults.php">Mani rezultāti</a>
                     <a href="AllResults.php">Visi rezultāti</a>
-                    <a href="AllUsers.php">Lietotāju saraksts</a>
-                    <a href="Logout.php">Log out</a>        
+                    <a href="AllUsers.php">Lietotāju saraksts</a>  
+                    <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] = true): ?>
+                        <a href=">Administrācija</a>
+                    <?php endif; ?>     
+                    <a href="Logout.php">Log out</a> 
                 <?php else: ?>
                     <a href="index.php">Sākumlapa</a>
                     <a href="Register.php">sign in</a>
