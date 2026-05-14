@@ -20,6 +20,7 @@ session_start();
                 <a href="index.php">Sākumlapa</a>
                 <a href="MyResults.php">Mani rezultāti</a>
                 <a href="AllResults.php">Visi rezultāti</a>
+                <a href="AllUsers.php">Lietotāju saraksts</a>
                 <a href="Logout.php">Log out</a>        
             <?php else: ?>
                 <a href="index.php">Sākumlapa</a>
