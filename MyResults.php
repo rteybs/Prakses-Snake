@@ -45,14 +45,11 @@ mysqli_close($con);
     <div class="SnakeBox">
         <?php if (count($records) > 0): ?>
             <table>
-                <thead>
                     <tr>
                         <th>Points</th>
                         <th>seconds played</th>
                         <th>Timestamp</th>
                     </tr>
-                </thead>
-                <tbody>
                     <?php foreach ($records as $rec): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
@@ -60,7 +57,6 @@ mysqli_close($con);
                             <td><?php echo htmlspecialchars($rec['Played_at']); ?></td>
                         </tr>
                     <?php endforeach; ?>
-                </tbody>
             </table>
         <?php else: ?>
             <p>Jums vēl nav neviena rezultāta. <a href="snake.php">Spēlēt tagad</a></p>
