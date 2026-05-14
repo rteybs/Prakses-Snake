@@ -27,7 +27,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
                     <a href="../MyResults.php">Mani rezultāti</a>
                     <a href="../AllResults.php">Visi rezultāti</a>
                     <a href="../AllUsers.php">Lietotāju saraksts</a>  
-                    <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] = true): ?>
+                    <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == true): ?>
                         <a href="admin.php">Admin panelis</a>
                     <?php endif; ?>     
                     <a href="../Logout.php">Log out</a> 
