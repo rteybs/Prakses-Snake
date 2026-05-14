@@ -18,13 +18,14 @@ $result = mysqli_query($con, $query);
 <form class="container">
   <div class="NavBox">
     <div class="nav">
-        <h1>Visi lietotāji</h1>
+        <h3>Visi lietotāji</h3>
         <div class="button-group">
             <?php if(isset($_SESSION['Username'])): ?>
                 <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
                 <a href="index.php">Sākumlapa</a>
                 <a href="MyResults.php">Mani rezultāti</a>
                 <a href="AllResults.php">Visi rezultāti</a>
+                <a href="AllUsers.php">Lietotāju saraksts</a>
                 <a href="Logout.php">Log out</a>        
             <?php else: ?>
                 <a href="index.php">Sākumlapa</a>

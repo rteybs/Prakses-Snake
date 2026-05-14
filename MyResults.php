@@ -25,10 +25,20 @@ mysqli_close($con);
 <body>
 <div class="container">
     <div class="NavBox">
-        <h1>Mani rezultāti</h1>
+        <h3>Mani rezultāti</h3>
         <div class="button-group">
-            <a href="index.php">Sākumlapa</a>
-            <a href="snake.php">Spēlēt vēlreiz</a>
+            <?php if(isset($_SESSION['Username'])): ?>
+                <span>Labdien, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</span>
+                <a href="index.php">Sākumlapa</a>
+                <a href="MyResults.php">Mani rezultāti</a>
+                <a href="AllResults.php">Visi rezultāti</a>
+                <a href="AllUsers.php">Lietotāju saraksts</a>
+                <a href="Logout.php">Log out</a>        
+            <?php else: ?>
+                <a href="index.php">Sākumlapa</a>
+                <a href="Register.php">sign in</a>
+                <a href="Login.php">Log in</a>
+            <?php endif; ?>
         </div>
     </div>
 
