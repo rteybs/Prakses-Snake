@@ -39,7 +39,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     <div class="SnakeBox">
         <h2>Administratora funkcijas</h2>
         <ul>
-            <li><a href="">Lietotāju pārvaldība</a></li>
+            <li><a href="AdminUsers.php">Lietotāju pārvaldība</a></li>
             <li><a href="">Vietu piešķiršana</a></li>
         </ul>
     </div>
