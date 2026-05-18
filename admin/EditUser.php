@@ -32,7 +32,7 @@ if (!$user) {
 </head>
 <body>
 <div class="auth-container">
-    <div class="nav-box">
+    <div class="NavBox">
         <div class="nav">
             <h1>Rediģēt lietotāju #<?= $user['User_ID'] ?></h1>
             <div class="button-group">
@@ -40,7 +40,7 @@ if (!$user) {
             </div>
         </div>
     </div>
-    <div class="o-race-box">
+    <div class="SnakeBox">
         <form action="UpdateUsers.php" method="post">
             <input type="hidden" name="User_ID" value="<?= $user['User_ID'] ?>">
             <label>Lietotājvārds: <input type="text" name="Username" value="<?= htmlspecialchars($user['Username']) ?>"></label><br>

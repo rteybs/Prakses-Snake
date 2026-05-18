@@ -18,7 +18,7 @@ $result = mysqli_query($con, $query);
 </head>
 <body>
 <form class="container">
-    <div class="nav-box">
+    <div class="NavBox">
         <div class="nav">
             <h1>Lietotāji</h1>
             <div class="button-group">
@@ -26,7 +26,7 @@ $result = mysqli_query($con, $query);
             </div>
         </div>
     </div>
-    <div class="o-race-box">
+    <div class="SnakeBox">
         <table class="race-table">
             <tr class="column-names">
                 <td>ID</td>
