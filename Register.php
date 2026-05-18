@@ -17,6 +17,7 @@
             <input type="text" placeholder="username" name="Username">
             <input type="email" placeholder="email" name="Email"> 
             <input type="password" placeholder="password" name="Password">
+            <input type="file" name="Avatar" accept="image/png, image/jpeg">
                      
             <button class="btn btn-primary" name="submit">Submit</button> 
         </form>  

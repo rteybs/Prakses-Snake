@@ -7,7 +7,7 @@ if(isset($_POST['login'])) {
     $Email = $_POST['Email'];
     $Password = $_POST['Password'];
 
-    $query = "SELECT * FROM user WHERE Email = ? AND Username = ?";
+    $query = "SELECT User_ID, Username, Email, Password, is_admin, Avatar_url FROM user WHERE Email = ? AND Username = ?";
     $stmt = mysqli_prepare($con, $query);
     mysqli_stmt_bind_param($stmt, "ss", $Email, $Username);
     mysqli_stmt_execute($stmt);
@@ -18,7 +18,8 @@ if(isset($_POST['login'])) {
             $_SESSION['User_ID'] = $row['User_ID'];
             $_SESSION['Username'] = $row['Username'];
             $_SESSION['Email'] = $row['Email'];
-            $_SESSION['is_admin'] = (bool)$row['is_admin'];   
+            $_SESSION['is_admin'] = (bool)$row['is_admin'];
+            $_SESSION['Avatar_url'] = $row['Avatar_url'];   
             header("Location: ../index.php");
             exit();
         } else {
