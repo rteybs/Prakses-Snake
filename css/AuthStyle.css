@@ -95,3 +95,8 @@ body{
     font-weight:bold;
     text-decoration:underline;
 }
+
+.errors{
+    text-align:center; 
+    margin-bottom:10px;
+}
