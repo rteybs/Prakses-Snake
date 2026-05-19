@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <title>Registration Form</title> 
-    <link rel="stylesheet" href="css/auth_style.css">
+    <link rel="stylesheet" href="css/AuthStyle.css">
 </head> 
 <body> 
     <div class="auth-container">   
