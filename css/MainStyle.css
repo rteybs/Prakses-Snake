@@ -7,7 +7,6 @@
 html, body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    /* New darker gradient - distinct from box backgrounds */
     background: linear-gradient(135deg, #0A0F1A, #0F172A, #0A0F1A);
     color: #F8FAFC;
     margin: 0;

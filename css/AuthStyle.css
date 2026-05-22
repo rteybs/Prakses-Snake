@@ -1,102 +1,114 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body{
-    height:100%;
+html, body {
+    height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, darkblue, crimson, darkblue);
-    color: #fff;
+    background: linear-gradient(135deg, #0A0F1A, #0F172A, #0A0F1A);
+    color: #F8FAFC;
 }
 
-body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    margin:0;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.auth-container{
-    background: rgba(0,0,0,0.7);
-    border: 2px solid white;
-    border-radius:10px;
+.auth-container {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 2px solid #10B981;
+    border-radius: 12px;
     padding: 40px 35px;
-    width:90%;
-    max-width:480px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-
-.auth-container h3{
-    text-align:center;
-    font-size:2rem;
-    margin-bottom:30px;
-    text-transform:uppercase;
-    letter-spacing:2px;
+.auth-container h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FBBF24;
 }
 
 .auth-container input[type="text"],
 .auth-container input[type="email"],
 .auth-container input[type="number"],
-.auth-container input[type="password"]{
-    width:100%;
-    padding:10px 12px;
-    margin-bottom:20px;
-    background-color: rgba(0,0,0,0.6);
-    border:1px solid #fff;
-    border-radius:4px;
-    color:white;
-    outline:none;
+.auth-container input[type="password"],
+.auth-container input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 1px solid #10B981;
+    border-radius: 6px;
+    color: #F8FAFC;
+    outline: none;
+    transition: 0.2s;
 }
 
-.auth-container input:focus{
-    border-color: crimson;
-    box-shadow: 0px 0px 8px rgba(220,20,60,0.5);
+.auth-container input:focus {
+    border-color: #34D399;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
 }
 
-.auth-container input::placeholder{
-    color: rgba(255,255,255,0.65);
+.auth-container input::placeholder {
+    color: rgba(248, 250, 252, 0.6);
 }
 
 .auth-container button,
-.auth-container input[type="submit"]{
-    display:block;
-    width:auto;
-    margin:10px auto 0 auto;
-    padding:12px 45px;
-    border:none;
-    border-radius:4px;
-    background:white;
-    color:black;
-    font-size:1rem;
-    font-weight:bold;
-    text-transform:uppercase;
-    cursor:pointer;
+.auth-container input[type="submit"] {
+    display: block;
+    width: auto;
+    margin: 10px auto 0 auto;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 6px;
+    background: #10B981;
+    color: #0F172A;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
     transition: 0.2s ease;
 }
 
 .auth-container button:hover,
-.auth-container input[type="submit"]:hover{
-    background:#ddd;
-    transform:scale(1.03);
+.auth-container input[type="submit"]:hover {
+    background: #34D399;
+    transform: scale(1.03);
 }
 
-.auth-container p{
-    text-align:center;
-    margin-top:20px;
-    font-size:0.95rem;
+.auth-container p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #F8FAFC;
 }
 
-.auth-container p a{
-    color:white;
-    font-weight:bold;
-    text-decoration:underline;
+.auth-container p a {
+    color: #FBBF24;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
-.errors{
-    text-align:center; 
-    margin-bottom:10px;
+.auth-container p a:hover {
+    color: #34D399;
+}
+
+.error {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #FBBF24;
+    font-size: 0.85rem;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 5px;
+    border-radius: 4px;
 }
