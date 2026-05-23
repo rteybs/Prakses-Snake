@@ -43,7 +43,7 @@ if (!$record) {
         </div>
     </div>
     <div class="SnakeBox">
-        <form action="UpdateRecord.php" method="post">
+        <form action="UpdateRecords.php" method="post">
             <input type="hidden" name="Record_ID" value="<?= $record['Record_ID'] ?>">
             <label>Punkti: 
                 <input type="number" name="Points" value="<?= $record['Points'] ?>" required min="0">
