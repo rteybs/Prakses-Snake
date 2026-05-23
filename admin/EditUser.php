@@ -28,7 +28,7 @@ if (!$user) {
 <head>
     <meta charset="UTF-8">
     <title>Rediģēt lietotāju</title>
-    <link rel="stylesheet" href="../css/MainStyle.css">
+    <link rel="stylesheet" href="../css/AuthStyle.css">
 </head>
 <body>
 <div class="auth-container">
