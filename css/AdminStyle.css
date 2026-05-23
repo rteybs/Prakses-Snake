@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0A0F1A;
+    color: #F8FAFC;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: auto 1fr;   
+    gap: 10px;
+    padding: 10px;
+    min-height: 100vh;
+}
+
+.NavBox {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 2px solid #10B981;
+    padding: 20px;
+    grid-column: span 20;
+    grid-row: span 1;
+}
+
+.NavBox h1,
+.NavBox h3 {
+    color: #FBBF24;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.button-group a,
+.button-group span,
+.restart-btn {
+    display: inline-block;
+    background: #10B981;
+    color: #0F172A;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button-group a:hover,
+.restart-btn:hover {
+    background: #34D399;
+    color: #0F172A;
+    transform: scale(1.05);
+}
+
+.button-group span {
+    background: transparent;
+    color: #F8FAFC;
+    font-weight: normal;
+    padding: 6px 0;
+}
+
+.button-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #10B981;
+}
+
+.SnakeBox {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 2px solid #10B981;
+    border-radius: 12px;
+    padding: 40px 20px;
+    grid-column: span 20;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    min-height: 320px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.SnakeBox h2 {
+    color: #FBBF24;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.SnakeBox ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.SnakeBox ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.SnakeBox ul li a {
+    display: inline-block;
+    background: #10B981;
+    color: #0F172A;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 200px;
+}
+
+.SnakeBox ul li a:hover {
+    background: #34D399;
+    transform: scale(1.05);
+    color: #0F172A;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.SnakeBox ul li a:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 700px) {
+    .container {
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .SnakeBox {
+        padding: 30px 15px;
+        min-height: 280px;
+    }
+    
+    .SnakeBox h2 {
+        font-size: 1.4rem;
+        margin-bottom: 24px;
+    }
+    
+    .SnakeBox ul {
+        gap: 16px;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .SnakeBox ul li a {
+        padding: 10px 20px;
+        font-size: 1rem;
+        min-width: 180px;
+        width: 100%;
+    }
+    
+    .button-group a,
+    .button-group span {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+}
+

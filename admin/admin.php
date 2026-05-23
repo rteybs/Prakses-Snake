@@ -13,7 +13,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrācija</title>
-    <link rel="stylesheet" href="../css/OneBoxStyle.css">
+    <link rel="stylesheet" href="../css/AdminStyle.css">
 </head>
 <body>
 <form class="container">
