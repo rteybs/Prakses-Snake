@@ -14,10 +14,10 @@ $result = mysqli_query($con, $query);
 <head>
     <meta charset="UTF-8">
     <title>Lietotāju pārvaldība</title>
-    <link rel="stylesheet" href="../css/MainStyle.css">
+    <link rel="stylesheet" href="../css/OneBoxStyle.css">
 </head>
 <body>
-<form class="container">
+<div class="container">
     <div class="NavBox">
         <div class="nav">
             <h1>Lietotāji</h1>
@@ -27,26 +27,32 @@ $result = mysqli_query($con, $query);
         </div>
     </div>
     <div class="SnakeBox">
-        <table class="race-table">
-            <tr class="column-names">
-                <td>ID</td>
-                <td>Username</td>
-                <td>Email</td>
-            </tr>
-            <?php while($user = mysqli_fetch_assoc($result)): ?>
-            <tr>
-                <td><?= $user['User_ID'] ?></td>
-                <td><?= htmlspecialchars($user['Username']) ?></td>
-                <td><?= htmlspecialchars($user['Email']) ?></td>
-                <td><?= $user['is_admin'] ? 'Jā' : 'Nē' ?></td>
-                <td>
-                    <a href="EditUser.php?id=<?= $user['User_ID'] ?>">Rediģēt</a> |
-                    <a href="DeleteUser.php?id=<?= $user['User_ID'] ?>" onclick="return confirm('Vai tiešām dzēst?')">Dzēst</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Ir admns?</th>
+                    <th>opcijas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($user = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?= $user['User_ID'] ?></td>
+                    <td><?= htmlspecialchars($user['Username']) ?></td>
+                    <td><?= htmlspecialchars($user['Email']) ?></td>
+                    <td><?= $user['is_admin'] ? 'Jā' : 'Nē' ?></td>
+                    <td>
+                        <a href="EditUser.php?id=<?= $user['User_ID'] ?>">Rediģēt</a> |
+                        <a href="DeleteUser.php?id=<?= $user['User_ID'] ?>" onclick="return confirm('Vai tiešām dzēst?')">Dzēst</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
         </table>
     </div>
-</form>
+</div>
 </body>
 </html>

@@ -20,7 +20,7 @@ mysqli_close($con);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mani rezultāti</title>
-    <link rel="stylesheet" href="css/MainStyle.css">
+    <link rel="stylesheet" href="css/OneBoxStyle.css">
 </head>
 <body>
 <div class="container">
@@ -47,12 +47,15 @@ mysqli_close($con);
 
     <div class="SnakeBox">
         <?php if (count($records) > 0): ?>
-            <table>
+            <table class="styled-table">
+                <thead>
                     <tr>
                         <th>Points</th>
                         <th>seconds played</th>
                         <th>Timestamp</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php foreach ($records as $rec): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
@@ -60,6 +63,7 @@ mysqli_close($con);
                             <td><?php echo htmlspecialchars($rec['Played_at']); ?></td>
                         </tr>
                     <?php endforeach; ?>
+                </tbody>
             </table>
         <?php else: ?>
             <p>Jums vēl nav neviena rezultāta. <a href="snake.php">Spēlēt tagad</a></p>

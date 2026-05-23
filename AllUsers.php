@@ -12,10 +12,10 @@ $result = mysqli_query($con, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Users</title>
-    <link rel="stylesheet" href="css/MainStyle.css">
+    <link rel="stylesheet" href="css/OneBoxStyle.css">
 </head>
 <body>
-<form class="container">
+<div class="container">
   <div class="NavBox">
     <div class="nav">
         <h3>Visi lietotāji</h3>
@@ -39,19 +39,23 @@ $result = mysqli_query($con, $query);
     </div>
   </div>
     <div class="SnakeBox">
-        <table>
-            <tr>
-                <td>Username</td>
-                <td>Email</td>
-            </tr>
-            <?php while($user = mysqli_fetch_assoc($result)): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($user['Username']); ?></td>
-                <td><?php echo htmlspecialchars($user['Email']); ?></td>
-            </tr>
-            <?php endwhile; ?>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($user = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($user['Username']); ?></td>
+                    <td><?php echo htmlspecialchars($user['Email']); ?></td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
         </table>
     </div>
-</form>
+</div>
 </body>
 </html>

@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0A0F1A;
+    color: #F8FAFC;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+    padding: 10px;
+    height: 100vh;
+}
+
+.NavBox {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 2px solid #10B981;
+    padding: 20px;
+    grid-column: span 20;
+    align-self: start;
+}
+
+.NavBox h1, .NavBox h3 {
+    margin-bottom: 10px;
+    color: #FBBF24;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.button-group a,
+.button-group span,
+.button-group .restart-btn {
+    display: inline-block;
+    background: #10B981;
+    color: #0F172A;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button-group a:hover,
+.button-group .restart-btn:hover {
+    background: #34D399;
+    color: #0F172A;
+    transform: scale(1.05);
+}
+
+.button-group span {
+    background: transparent;
+    color: #F8FAFC;
+    font-weight: normal;
+    padding: 6px 0;
+}
+
+.button-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #10B981;
+}
+
+.SnakeBox {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 2px solid #10B981;
+    border-radius: 12px;
+    padding: 1.5rem;
+    grid-column: span 20;
+    justify-self: center;
+    align-self: center;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    transition: all 0.2s ease;
+}
+
+.SnakeBox h1, .SnakeBox h2, .SnakeBox h3 {
+    color: #FBBF24;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.styled-table,
+.SnakeBox table,
+.SnakeBox .race-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(30, 41, 59, 0.95);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 1rem 0;
+}
+
+.styled-table thead tr,
+.SnakeBox thead tr,
+.SnakeBox .column-names {
+    background: #0F172A;
+    color: #FBBF24;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.styled-table th,
+.styled-table td,
+.SnakeBox th,
+.SnakeBox td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
+}
+
+.styled-table th,
+.SnakeBox th {
+    font-weight: bold;
+    border-bottom: 2px solid #10B981;
+}
+
+.styled-table td,
+.SnakeBox td {
+    color: #F8FAFC;
+}
+
+
+.styled-table tbody tr:nth-child(even),
+.SnakeBox tbody tr:nth-child(even) {
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.styled-table tbody tr:hover,
+.SnakeBox tbody tr:hover {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+.styled-table td:first-child,
+.styled-table th:first-child,
+.SnakeBox td:first-child,
+.SnakeBox th:first-child {
+    text-align: center;
+    width: 50px;
+}
+
+.styled-table td:nth-child(3),
+.styled-table th:nth-child(3),
+.SnakeBox td:nth-child(3),
+.SnakeBox th:nth-child(3) {
+    text-align: right;
+    font-weight: bold;
+    color: #FBBF24;
+}
+
+.styled-table td a,
+.SnakeBox td a {
+    color: #10B981;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.styled-table td a:hover,
+.SnakeBox td a:hover {
+    color: #34D399;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 700px) {
+    .container {
+        gap: 8px;
+        padding: 8px;
+        height: 100vh;
+    }
+    .SnakeBox {
+        width: 98%;
+        padding: 0.8rem;
+    }
+    .styled-table th,
+    .styled-table td,
+    .SnakeBox th,
+    .SnakeBox td {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    .button-group a,
+    .button-group span {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+    .NavBox {
+        padding: 15px;
+    }
+}
+

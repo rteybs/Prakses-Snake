@@ -19,10 +19,10 @@ $result = mysqli_query($con, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rezultātu pārvaldība</title>
-    <link rel="stylesheet" href="../css/MainStyle.css">
+    <link rel="stylesheet" href="../css/OneBoxStyle.css">
 </head>
 <body>
-<form class="container">
+<div class="container">
     <div class="NavBox">
         <div>
             <h1>Spēļu rezultāti</h1>
@@ -33,30 +33,34 @@ $result = mysqli_query($con, $query);
     </div>
 
     <div class="SnakeBox">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Lietotājs</th>
-                <th>Punkti</th>
-                <th>Ilgums (sek)</th>
-                <th>Spēles laiks</th>
-                <th>Darbības</th>
-            </tr>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-            <tr>
-                <td><?= $row['Record_ID'] ?></td>
-                <td><?= htmlspecialchars($row['Username']) ?></td>
-                <td><?= $row['Points'] ?></td>
-                <td><?= $row['Duration_sec'] ?></td>
-                <td><?= $row['Played_at'] ?></td>
-                <td>
-                    <a href="EditRecord.php?id=<?= $row['Record_ID'] ?>">Rediģēt</a> |
-                    <a href="DeleteRecord.php?id=<?= $row['Record_ID'] ?>" onclick="return confirm('Dzēst šo rezultātu?')">Dzēst</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Lietotājs</th>
+                    <th>Punkti</th>
+                    <th>Ilgums (sek)</th>
+                    <th>Spēles laiks</th>
+                    <th>opcijas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?= $row['Record_ID'] ?></td>
+                    <td><?= htmlspecialchars($row['Username']) ?></td>
+                    <td><?= $row['Points'] ?></td>
+                    <td><?= $row['Duration_sec'] ?></td>
+                    <td><?= $row['Played_at'] ?></td>
+                    <td>
+                        <a href="EditRecord.php?id=<?= $row['Record_ID'] ?>">Rediģēt</a> |
+                        <a href="DeleteRecord.php?id=<?= $row['Record_ID'] ?>" onclick="return confirm('Dzēst šo rezultātu?')">Dzēst</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
         </table>
     </div>
-</form>
+</div>
 </body>
 </html>

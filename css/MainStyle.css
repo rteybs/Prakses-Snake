@@ -30,6 +30,10 @@ html, body {
     grid-row: span 1;
 }
 
+.NavBox h3{
+    color: #FBBF24;
+}
+
 .button-group {
     display: flex;
     gap: 10px;
@@ -208,9 +212,6 @@ html, body {
     color: #F8FAFC;
 }
 
-.styled-table tbody tr {
-    transition: background 0.2s;
-}
 
 .styled-table tbody tr:nth-child(even) {
     background: rgba(16, 185, 129, 0.05);
