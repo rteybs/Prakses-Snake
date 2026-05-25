@@ -2,14 +2,14 @@
 session_start();
 require_once __DIR__ . '/includes/connection.php';
 
-$topQuery = "SELECT Username, Points, Played_at 
+$topQuery = "SELECT Username, Points, Played_at, Avatar_url
              FROM records
              JOIN user ON user.User_ID = records.User_ID
              ORDER BY Points DESC
              LIMIT 5";
 $topResult = mysqli_query($con, $topQuery);
 
-$recentQuery = "SELECT Username, Points, Played_at 
+$recentQuery = "SELECT Username, Points, Played_at, Avatar_url
                 FROM records 
                 JOIN user ON user.User_ID = records.User_ID 
                 ORDER BY Played_at DESC 
@@ -120,7 +120,7 @@ if (isset($_SESSION['User_ID'])) {
 
         <div class="info-cube">
             <p><strong>Vadība:</strong> bulttaustiņi vai WASD</p>
-            <p><strong>Mērķis:</strong> Apēst sarkano ēdienu, kļūt garākam, neietriekties sienā vai sevī.</p>
+            <p><strong>Mērķis:</strong> Apēst dzelteno ēdienu, kļūt garākam, neietriekties sienā vai sevī.</p>
         </div>
 
         <?php if (isset($_SESSION['Username'])): ?>
@@ -148,6 +148,7 @@ if (isset($_SESSION['User_ID'])) {
                 <thead>
                     <tr>
                         <th>Nr.</th>
+                        <th>Avatar</th>
                         <th>Lietotājs</th>
                         <th>Punkti</th>
                         <th>Datums</th>
@@ -160,6 +161,13 @@ if (isset($_SESSION['User_ID'])) {
                 while($top = mysqli_fetch_assoc($topResult)): ?>
                     <tr>
                         <td><?php echo $rank++; ?></td>
+                        <td>
+                            <?php if(!empty($top['Avatar_url'])): ?>
+                                <img src="<?php echo htmlspecialchars($top['Avatar_url']); ?>" class="table-avatar" alt="avatar">
+                            <?php else: ?>
+                                has no avatar
+                            <?php endif; ?>
+                        </td>
                         <td><?php echo htmlspecialchars($top['Username']); ?></td>
                         <td><?php echo htmlspecialchars($top['Points']); ?></td>
                         <td><?php echo date('d.m.Y', strtotime($top['Played_at'])); ?></td>
@@ -184,6 +192,7 @@ if (isset($_SESSION['User_ID'])) {
             <table class="styled-table">
                 <thead>
                     <tr>
+                        <th>Avatar</th>
                         <th>Lietotājs</th>
                         <th>Punkti</th>
                         <th>Laiks</th>
@@ -192,6 +201,13 @@ if (isset($_SESSION['User_ID'])) {
                 <tbody>
                 <?php while($row = mysqli_fetch_assoc($recentResult)): ?>
                     <tr>
+                        <td>
+                            <?php if(!empty($row['Avatar_url'])): ?>
+                                <img src="<?php echo htmlspecialchars($row['Avatar_url']); ?>" class="table-avatar" alt="avatar">
+                            <?php else: ?>
+                                has no avatar
+                            <?php endif; ?>
+                        </td>
                         <td><?php echo htmlspecialchars($row['Username']); ?></td>
                         <td><?php echo $row['Points']; ?></td>
                         <td><?php echo date('H:i, d.m.Y', strtotime($row['Played_at'])); ?></td>

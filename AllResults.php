@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . '/includes/connection.php';
 
-$query = "SELECT records.Points, records.Duration_sec, records.Played_at, user.Username 
+$query = "SELECT records.Points, records.Duration_sec, records.Played_at, user.Username, user.Avatar_url
           FROM records 
           JOIN user ON records.User_ID = user.User_ID
           ORDER BY records.Played_at DESC";
@@ -11,8 +11,6 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
-mysqli_free_result($result);
-mysqli_close($con);
 ?>
 <!DOCTYPE html>
 <html lang="lv">
@@ -50,6 +48,7 @@ mysqli_close($con);
             <table class="styled-table">
                 <thead>
                     <tr>
+                        <th>Avatar</th>
                         <th>User</th>
                         <th>Points</th>
                         <th>sekundēs</th>
@@ -59,6 +58,13 @@ mysqli_close($con);
                 <tbody>
                     <?php foreach ($records as $rec): ?>
                         <tr>
+                            <td>
+                                <?php if(!empty($rec['Avatar_url'])): ?>
+                                    <img src="<?php echo htmlspecialchars($rec['Avatar_url']); ?>" class="table-avatar" alt="avatar">
+                                <?php else: ?>
+                                    has no avatar
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo htmlspecialchars($rec['Username']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Duration_sec']); ?></td>

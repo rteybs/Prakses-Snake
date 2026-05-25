@@ -258,6 +258,15 @@ html, body {
     padding: 6px 12px;
 }
 
+.table-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #10B981;
+    background-color: #1E293B;
+}
+
 @media (max-width: 700px) {
     .mini-snake.large {
         grid-template-columns: repeat(5, 20px);

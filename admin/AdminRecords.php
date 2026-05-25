@@ -7,10 +7,19 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     exit();
 }
 
-$query = "SELECT records.Record_ID, records.Points, records.Duration_sec, records.Played_at, user.Username, user.User_ID
-        FROM records
-        JOIN user ON records.User_ID = user.User_ID
-        ORDER BY records.Played_at DESC";
+function adminAvatarUrl($url) {
+    if (empty($url)){
+        return null;
+    };
+    
+    return '../' . ltrim($url, '/');
+}
+
+$query = "SELECT records.Record_ID, records.Points, records.Duration_sec, records.Played_at, 
+                 user.Username, user.User_ID, user.Avatar_url
+          FROM records
+          JOIN user ON records.User_ID = user.User_ID
+          ORDER BY records.Played_at DESC";
 $result = mysqli_query($con, $query);
 ?>
 <!DOCTYPE html>
@@ -37,6 +46,7 @@ $result = mysqli_query($con, $query);
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Avatar</th>
                     <th>Lietotājs</th>
                     <th>Punkti</th>
                     <th>Ilgums (sek)</th>
@@ -48,6 +58,15 @@ $result = mysqli_query($con, $query);
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
                     <td><?= $row['Record_ID'] ?></td>
+                    <td>
+                        <?php 
+                        $avatarUrl = adminAvatarUrl($row['Avatar_url']);
+                        if ($avatarUrl): ?>
+                            <img src="<?= htmlspecialchars($avatarUrl) ?>" class="table-avatar" alt="avatar">
+                        <?php else: ?>
+                            has no avatar
+                        <?php endif; ?>
+                    </td>
                     <td><?= htmlspecialchars($row['Username']) ?></td>
                     <td><?= $row['Points'] ?></td>
                     <td><?= $row['Duration_sec'] ?></td>

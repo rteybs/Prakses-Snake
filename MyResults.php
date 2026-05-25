@@ -11,8 +11,7 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
-mysqli_free_result($result);
-mysqli_close($con);
+
 ?>
 <!DOCTYPE html>
 <html lang="lv">

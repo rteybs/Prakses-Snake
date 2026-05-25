@@ -8,6 +8,14 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
 
 $query = "SELECT * FROM user ORDER BY User_ID DESC";
 $result = mysqli_query($con, $query);
+
+function adminAvatarUrl($url) {
+    if (empty($url)){
+        return null;
+    };
+    
+    return '../' . ltrim($url, '/');
+}
 ?>
 <!DOCTYPE html>
 <html lang="lv">
@@ -31,6 +39,7 @@ $result = mysqli_query($con, $query);
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Avatar</th>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Ir admns?</th>
@@ -41,6 +50,15 @@ $result = mysqli_query($con, $query);
                 <?php while($user = mysqli_fetch_assoc($result)): ?>
                 <tr>
                     <td><?= $user['User_ID'] ?></td>
+                    <td>
+                        <?php 
+                        $avatarUrl = adminAvatarUrl($user['Avatar_url']);
+                        if ($avatarUrl): ?>
+                            <img src="<?= htmlspecialchars($avatarUrl) ?>" class="table-avatar" alt="avatar">
+                        <?php else: ?>
+                            has no avatar
+                        <?php endif; ?>
+                    </td>
                     <td><?= htmlspecialchars($user['Username']) ?></td>
                     <td><?= htmlspecialchars($user['Email']) ?></td>
                     <td><?= $user['is_admin'] ? 'Jā' : 'Nē' ?></td>

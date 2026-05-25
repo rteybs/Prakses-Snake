@@ -42,6 +42,7 @@ $result = mysqli_query($con, $query);
         <table class="styled-table">
             <thead>
                 <tr>
+                    <th>Avatar</th>
                     <th>Username</th>
                     <th>Email</th>
                 </tr>
@@ -49,6 +50,13 @@ $result = mysqli_query($con, $query);
             <tbody>
                 <?php while($user = mysqli_fetch_assoc($result)): ?>
                 <tr>
+                    <td>
+                        <?php if(!empty($user['Avatar_url'])): ?>
+                            <img src="<?php echo htmlspecialchars($user['Avatar_url']); ?>" class="table-avatar" alt="avatar">
+                        <?php else: ?>
+                            has no avatar
+                        <?php endif; ?>
+                    </td>
                     <td><?php echo htmlspecialchars($user['Username']); ?></td>
                     <td><?php echo htmlspecialchars($user['Email']); ?></td>
                 </tr>
