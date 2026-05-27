@@ -14,6 +14,7 @@ $userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
 <body>
 <div class="container">
     <div class="NavBox">
+        <h3>Čūsku spēle</h3>
         <div class="button-group">
             <?php if(isset($_SESSION['Username'])): ?>
                 <div class="button-info">
@@ -75,12 +76,13 @@ $userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
         const gridSize = 20;      
         const tileCount = canvas.width / gridSize;   
 
-        let snake, direction, food, score, gameRunning, startTime;
+        let snake, direction, nextDirection, food, score, gameRunning, startTime;
         let gameLoop, timerLoop;
 
         function initGame() {
             snake = [{x: 10, y: 10}];
-            direction = {x: 0, y: 0};   
+            direction = {x: 1, y: 0};  
+            nextDirection = null;
             score = 0;
             gameRunning = true;
             startTime = Date.now();
@@ -120,6 +122,13 @@ $userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
 
         function update() {
             if (!gameRunning) return;
+
+            if (nextDirection !== null) {
+                if (nextDirection.x !== -direction.x || nextDirection.y !== -direction.y) {
+                    direction = nextDirection;
+                }
+                nextDirection = null;
+            }
 
             const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
 
@@ -186,15 +195,18 @@ $userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
 
         document.addEventListener('keydown', e => {
             if (!gameRunning) return;
+
+            let dx = 0, dy = 0;
             const key = e.key;
-            if (key === 'ArrowUp'    && direction.y === 0) { direction = {x: 0, y: -1}; }
-            if (key === 'ArrowDown'  && direction.y === 0) { direction = {x: 0, y: 1}; }
-            if (key === 'ArrowLeft'  && direction.x === 0) { direction = {x: -1, y: 0}; }
-            if (key === 'ArrowRight' && direction.x === 0) { direction = {x: 1, y: 0}; }
-            if (key === 'w'          && direction.y === 0) { direction = {x: 0, y: -1}; }
-            if (key === 's'          && direction.y === 0) { direction = {x: 0, y: 1}; }
-            if (key === 'a'          && direction.x === 0) { direction = {x: -1, y: 0}; }
-            if (key === 'd'          && direction.x === 0) { direction = {x: 1, y: 0}; }
+            if (key === 'ArrowUp' || key === 'w') { dx = 0; dy = -1; }
+            else if (key === 'ArrowDown' || key === 's') { dx = 0; dy = 1; }
+            else if (key === 'ArrowLeft' || key === 'a') { dx = -1; dy = 0; }
+            else if (key === 'ArrowRight' || key === 'd') { dx = 1; dy = 0; }
+            else return;
+
+            if ((dx === -direction.x && dy === -direction.y)) return;
+
+            nextDirection = {x: dx, y: dy};
         });
 
         restartBtn.addEventListener('click', initGame);
