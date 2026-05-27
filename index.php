@@ -181,9 +181,9 @@ if (isset($_SESSION['User_ID'])) {
         <div class="info-cube">
             <p>Jūsu vieta: <strong>#<?php echo $userRank; ?></strong></p>
         </div>
+        <a href="AllResults.php" class="more-link">Skatīt visus rezultātus →</a>
         <?php endif; ?>
         
-        <a href="AllResults.php" class="more-link">Skatīt visus rezultātus →</a>
     </div>
 
     <div class="RecentBox">
