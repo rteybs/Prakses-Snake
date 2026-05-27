@@ -2,8 +2,34 @@
 session_start();
 require_once __DIR__ . '/includes/connection.php';
 
-$query = "SELECT * FROM User ORDER BY User_ID ASC";
-$result = mysqli_query($con, $query);
+$where = [];
+$params = [];
+$types = "";
+
+if (isset($_GET['search_username']) && trim($_GET['search_username']) !== '') {
+    $where[] = "Username LIKE ?";
+    $params[] = "%" . trim($_GET['search_username']) . "%";
+    $types .= "s";
+}
+
+if (isset($_GET['search_email']) && trim($_GET['search_email']) !== '') {
+    $where[] = "Email LIKE ?";
+    $params[] = "%" . trim($_GET['search_email']) . "%";
+    $types .= "s";
+}
+
+$sql = "SELECT * FROM User";
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+}
+$sql .= " ORDER BY User_ID ASC";
+
+$stmt = mysqli_prepare($con, $sql);
+if (!empty($params)) {
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+}
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +65,23 @@ $result = mysqli_query($con, $query);
     </div>
   </div>
     <div class="SnakeBox">
+        <form method="GET" class="filter-form">
+            <div class="filter-group">
+                <label>Lietotājvārds</label>
+                <input type="text" name="search_username" value="<?php echo htmlspecialchars($_GET['search_username'] ?? ''); ?>" placeholder="Meklēt pēc vārda...">
+            </div>
+            <div class="filter-group">
+                <label>E-pasts</label>
+                <input type="text" name="search_email" value="<?php echo htmlspecialchars($_GET['search_email'] ?? ''); ?>" placeholder="Meklēt pēc e-pasta...">
+            </div>
+            <div class="filter-group">
+                <button type="submit">Filtrēt</button>
+            </div>
+            <div class="filter-group">
+                <a href="AllUsers.php" class="reset-btn">Notīrīt</a>
+            </div>
+        </form>
+
         <table class="styled-table">
             <thead>
                 <tr>

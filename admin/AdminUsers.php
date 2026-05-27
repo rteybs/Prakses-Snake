@@ -6,16 +6,48 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     exit();
 }
 
-$query = "SELECT * FROM user ORDER BY User_ID DESC";
-$result = mysqli_query($con, $query);
-
 function adminAvatarUrl($url) {
     if (empty($url)){
         return null;
     };
-    
     return '../' . ltrim($url, '/');
 }
+
+$where = [];
+$params = [];
+$types = "";
+
+if (isset($_GET['search_username']) && trim($_GET['search_username']) !== '') {
+    $where[] = "Username LIKE ?";
+    $params[] = "%" . trim($_GET['search_username']) . "%";
+    $types .= "s";
+}
+
+if (isset($_GET['search_email']) && trim($_GET['search_email']) !== '') {
+    $where[] = "Email LIKE ?";
+    $params[] = "%" . trim($_GET['search_email']) . "%";
+    $types .= "s";
+}
+
+if (isset($_GET['admin_filter']) && $_GET['admin_filter'] !== '') {
+    $admin_val = (int)$_GET['admin_filter'];
+    $where[] = "is_admin = ?";
+    $params[] = $admin_val;
+    $types .= "i";
+}
+
+$sql = "SELECT * FROM user";
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+}
+$sql .= " ORDER BY User_ID DESC";
+
+$stmt = mysqli_prepare($con, $sql);
+if (!empty($params)) {
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+}
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 ?>
 <!DOCTYPE html>
 <html lang="lv">
@@ -35,6 +67,31 @@ function adminAvatarUrl($url) {
         </div>
     </div>
     <div class="SnakeBox">
+        <form method="GET" class="filter-form">
+            <div class="filter-group">
+                <label>Lietotājvārds</label>
+                <input type="text" name="search_username" value="<?php echo htmlspecialchars($_GET['search_username'] ?? ''); ?>" placeholder="Meklēt pēc vārda...">
+            </div>
+            <div class="filter-group">
+                <label>E-pasts</label>
+                <input type="text" name="search_email" value="<?php echo htmlspecialchars($_GET['search_email'] ?? ''); ?>" placeholder="Meklēt pēc e-pasta...">
+            </div>
+            <div class="filter-group">
+                <label>Administrators</label>
+                <select name="admin_filter">
+                    <option value="">Visi</option>
+                    <option value="1" <?php echo (isset($_GET['admin_filter']) && $_GET['admin_filter'] == '1') ? 'selected' : ''; ?>>Jā</option>
+                    <option value="0" <?php echo (isset($_GET['admin_filter']) && $_GET['admin_filter'] == '0') ? 'selected' : ''; ?>>Nē</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <button type="submit">Filtrēt</button>
+            </div>
+            <div class="filter-group">
+                <a href="AdminUsers.php" class="reset-btn">Notīrīt</a>
+            </div>
+        </form>
+
         <table class="styled-table">
             <thead>
                 <tr>

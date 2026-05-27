@@ -5,14 +5,45 @@ require_once __DIR__ . '/includes/functions.php';
 
 $User_ID = $_SESSION['User_ID'];
 
-$query = "SELECT Points, Duration_sec, Played_at FROM records WHERE User_ID = ? ORDER BY Played_at DESC";
-$stmt = mysqli_prepare($con, $query);
-mysqli_stmt_bind_param($stmt, "i", $User_ID);
+$where = ["User_ID = ?"];
+$params = [$User_ID];
+$types = "i";
+
+if (isset($_GET['points_min']) && $_GET['points_min'] !== '' && is_numeric($_GET['points_min'])) {
+    $where[] = "Points >= ?";
+    $params[] = (int)$_GET['points_min'];
+    $types .= "i";
+}
+
+if (isset($_GET['points_max']) && $_GET['points_max'] !== '' && is_numeric($_GET['points_max'])) {
+    $where[] = "Points <= ?";
+    $params[] = (int)$_GET['points_max'];
+    $types .= "i";
+}
+
+if (isset($_GET['date_from']) && trim($_GET['date_from']) !== '') {
+    $where[] = "records.Played_at >= ?";
+    $params[] = trim($_GET['date_from']);
+    $types .= "s";
+}
+
+if (isset($_GET['date_to']) && trim($_GET['date_to']) !== '') {
+    $where[] = "records.Played_at <= ?";
+    $params[] = trim($_GET['date_to']) . ' 23:59:59';
+    $types .= "s";
+}
+
+$sql = "SELECT Points, Duration_sec, Played_at FROM records";
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+}
+$sql .= " ORDER BY Played_at DESC";
+
+$stmt = mysqli_prepare($con, $sql);
+mysqli_stmt_bind_param($stmt, $types, ...$params);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
-
 $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="lv">
@@ -46,6 +77,31 @@ $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
     </div>
 
     <div class="SnakeBox">
+        <form method="GET" class="filter-form">
+            <div class="filter-group">
+                <label>Punkti no</label>
+                <input type="number" name="points_min" value="<?php echo htmlspecialchars($_GET['points_min'] ?? ''); ?>" placeholder="Min">
+            </div>
+            <div class="filter-group">
+                <label>Punkti līdz</label>
+                <input type="number" name="points_max" value="<?php echo htmlspecialchars($_GET['points_max'] ?? ''); ?>" placeholder="Max">
+            </div>
+            <div class="filter-group">
+                <label>Datums no</label>
+                <input type="date" name="date_from" value="<?php echo htmlspecialchars($_GET['date_from'] ?? ''); ?>">
+            </div>
+            <div class="filter-group">
+                <label>Datums līdz</label>
+                <input type="date" name="date_to" value="<?php echo htmlspecialchars($_GET['date_to'] ?? ''); ?>">
+            </div>
+            <div class="filter-group">
+                <button type="submit">Filtrēt</button>
+            </div>
+            <div class="filter-group">
+                <a href="MyResults.php" class="reset-btn">Notīrīt</a>
+            </div>
+        </form>
+
         <?php if (count($records) > 0): ?>
             <table class="styled-table">
                 <thead>
@@ -66,7 +122,7 @@ $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 </tbody>
             </table>
         <?php else: ?>
-            <p>Jums vēl nav neviena rezultāta. <a href="snake.php">Spēlēt tagad</a></p>
+            <p>Nav rezultātu ar šādiem filtriem. <a href="snake.php">Spēlēt tagad</a></p>
         <?php endif; ?>
     </div>
 </div>
