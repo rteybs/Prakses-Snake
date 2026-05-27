@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/includes/connection.php';
+require_once __DIR__ . '/includes/functions.php';
 
 $query = "SELECT records.Points, records.Duration_sec, records.Played_at, user.Username, user.Avatar_url
           FROM records 
@@ -51,7 +52,7 @@ $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <th>Avatar</th>
                         <th>User</th>
                         <th>Points</th>
-                        <th>sekundēs</th>
+                        <th>Laiks Spēlēts</th>
                         <th>Timestamp</th>
                     </tr>
                 </thead>
@@ -67,7 +68,7 @@ $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             </td>
                             <td><?php echo htmlspecialchars($rec['Username']); ?></td>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
-                            <td><?php echo htmlspecialchars($rec['Duration_sec']); ?></td>
+                            <td><?php echo htmlspecialchars(formatduration($rec['Duration_sec'])); ?></td>
                             <td><?php echo htmlspecialchars($rec['Played_at']); ?></td>
                         </tr>
                     <?php endforeach; ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/connection.php';
+require_once __DIR__ . '/includes/functions.php';
 
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     header("Location: ../index.php");
@@ -69,7 +70,7 @@ $result = mysqli_query($con, $query);
                     </td>
                     <td><?= htmlspecialchars($row['Username']) ?></td>
                     <td><?= $row['Points'] ?></td>
-                    <td><?= $row['Duration_sec'] ?></td>
+                    <td><?= formatduration($row['Duration_sec']) ?></td>
                     <td><?= $row['Played_at'] ?></td>
                     <td>
                         <a href="EditRecord.php?id=<?= $row['Record_ID'] ?>">Rediģēt</a> |

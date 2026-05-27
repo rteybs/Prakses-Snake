@@ -1,8 +1,9 @@
 <?php
 
-$con=mysqli_connect("localhost","root","","snake");  
-if(!$con) 
-{ 
+$con = mysqli_connect("localhost", "root", "", "snake");
+if (!$con) {
     die(" Connection Error ");
-}  
-?>
+}
+
+
+

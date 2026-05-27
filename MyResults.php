@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/includes/connection.php';
+require_once __DIR__ . '/includes/functions.php';
 
 $User_ID = $_SESSION['User_ID'];
 
@@ -58,7 +59,7 @@ $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <?php foreach ($records as $rec): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($rec['Points']); ?></td>
-                            <td><?php echo htmlspecialchars($rec['Duration_sec']); ?></td>
+                            <td><?php echo htmlspecialchars(formatduration($rec['Duration_sec'])); ?></td>
                             <td><?php echo htmlspecialchars($rec['Played_at']); ?></td>
                         </tr>
                     <?php endforeach; ?>
