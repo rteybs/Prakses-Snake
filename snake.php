@@ -35,8 +35,8 @@ $userId = $isLoggedIn ? $_SESSION['User_ID'] : 0;
                 <a href="Logout.php">Log out</a> 
             <?php else: ?>
                 <a href="index.php">Sākumlapa</a>
-                <a href="Register.php">sign in</a>
-                <a href="Login.php">Log in</a>
+                <a href="Register.php">Izveido kontu</a>
+                <a href="Login.php">Pieslēdzies kontam</a>
             <?php endif; ?>
         </div>
     </div>
