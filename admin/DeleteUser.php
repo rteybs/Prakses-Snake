@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
     $stmt = mysqli_prepare($con, $query);
     mysqli_stmt_bind_param($stmt, "i", $User_ID);  
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: AdminUsers.php?msg=deleted");
+        header("Location: AdminUsers.php");
         exit();
     } else {
         echo "Kļūda dzēšot: " . mysqli_error($con);

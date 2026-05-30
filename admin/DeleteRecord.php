@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     mysqli_stmt_bind_param($stmt, "i", $record_id);
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: AdminRecords.php?msg=deleted");
+        header("Location: AdminRecords.php");
         exit();
     } else {
         echo "Kļūda dzēšot: " . mysqli_error($con);
