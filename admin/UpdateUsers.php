@@ -24,7 +24,7 @@ if (isset($_POST['update'])) {
     }
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: AdminUsers.php?msg=updated");
+        header("Location: AdminUsers.php");
         exit();
     } else {
         echo "Kļūda: " . mysqli_error($con);

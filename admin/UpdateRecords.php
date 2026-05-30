@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
     mysqli_stmt_bind_param($stmt, "iii", $points, $duration, $record_id);
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: AdminRecords.php?msg=updated");
+        header("Location: AdminRecords.php");
         exit();
     } else {
         echo "Kļūda atjauninot: " . mysqli_error($con);
