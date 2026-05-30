@@ -37,9 +37,7 @@ if (!$record) {
     <div class="NavBox">
         <div class="nav">
             <h1>Rediģēt rezultātu #<?= $record['Record_ID'] ?></h1>
-            <div class="button-group">
-                <a href="AdminRecords.php">Atpakaļ uz sarakstu</a>
-            </div>
+            
         </div>
     </div>
     <div class="SnakeBox">

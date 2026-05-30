@@ -35,9 +35,6 @@ if (!$user) {
     <div class="NavBox">
         <div class="nav">
             <h1>Rediģēt lietotāju #<?= $user['User_ID'] ?></h1>
-            <div class="button-group">
-                <a href="AdminUsers.php">Atpakaļ</a>
-            </div>
         </div>
     </div>
     <div class="SnakeBox">
