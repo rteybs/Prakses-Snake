@@ -157,7 +157,6 @@ if (isset($_SESSION['User_ID'])) {
                 <tbody>
                 <?php 
                 $rank = 1;
-                mysqli_data_seek($topResult, 0);
                 while($top = mysqli_fetch_assoc($topResult)): ?>
                     <tr>
                         <td><?php echo $rank++; ?></td>
