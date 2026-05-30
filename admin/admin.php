@@ -40,7 +40,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
         <h2>Administratora funkcijas</h2>
         <ul>
             <li><a href="AdminUsers.php">Lietotāju pārvaldība</a></li>
-            <li><a href="AdminRecords.php">Vietu piešķiršana</a></li>
+            <li><a href="AdminRecords.php">Rekordu pārvaldība</a></li>
         </ul>
     </div>
 </form>
