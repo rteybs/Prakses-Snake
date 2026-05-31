@@ -40,21 +40,29 @@ if (isset($_POST['login'])) {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-    if ($row = mysqli_fetch_assoc($result)) {
-        if (password_verify($Password, $row['Password'])) {
-            $_SESSION['User_ID'] = $row['User_ID'];
-            $_SESSION['Username'] = $row['Username'];
-            $_SESSION['Email'] = $row['Email'];
-            $_SESSION['is_admin'] = (bool)$row['is_admin'];
-            $_SESSION['Avatar_url'] = $row['Avatar_url'];
-            header("Location: ../index.php");
-            exit();
-        } else {
-            $errors['Password'] = "Nepareiza parole!";
-        }
+if ($row = mysqli_fetch_assoc($result)) {
+    if (password_verify($Password, $row['Password'])) {
+        $_SESSION['User_ID'] = $row['User_ID'];
+        $_SESSION['Username'] = $row['Username'];
+        $_SESSION['Email'] = $row['Email'];
+        $_SESSION['is_admin'] = (bool)$row['is_admin'];
+        $_SESSION['Avatar_url'] = $row['Avatar_url'];
+        header("Location: ../index.php");
+        exit();
     } else {
-        $errors['general'] = "Lietotājs ar šādu lietotājvārdu un e-pastu nav atrasts!";
+        $errors['Password'] = "Nepareiza parole!";
+        $_SESSION['login_errors'] = $errors;
+        $_SESSION['login_old'] = ['Username' => $Username, 'Email' => $Email];
+        header("Location: ../Login.php");
+        exit();
     }
+} else {
+    $errors['general'] = "Lietotājs ar šādu lietotājvārdu vai e-pastu nav atrasts!";
+    $_SESSION['login_errors'] = $errors;
+    $_SESSION['login_old'] = ['Username' => $Username, 'Email' => $Email];
+    header("Location: ../Login.php");
+    exit();
+}
 
 }
 ?>
