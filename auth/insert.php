@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/connection.php';
+mysqli_report(MYSQLI_REPORT_OFF);
 
 function test_input($data) {
     $data = trim($data);
