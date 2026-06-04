@@ -1,6 +1,5 @@
 <?php
 function formatDuration($seconds) {
-    $seconds = (int)$seconds;
     if ($seconds < 60) {
         return $seconds . ' s';
     }
